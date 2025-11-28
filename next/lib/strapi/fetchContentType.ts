@@ -39,8 +39,10 @@ export default async function fetchContentType(
     const queryParams = { ...params };
 
     if (isDraftMode) {
-      queryParams.status = 'draft';
-    }
+  queryParams.status = 'draft';
+} else {
+  queryParams.status = 'published';  // Add this line
+}
 
     // Construct the full URL for the API request
     const url = new URL(`api/${contentType}`, process.env.NEXT_PUBLIC_API_URL);

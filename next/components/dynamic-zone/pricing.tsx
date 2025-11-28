@@ -38,6 +38,8 @@ export const Pricing = ({
   sub_heading: string;
   plans: any[];
 }) => {
+    console.log('Pricing component received:', { heading, sub_heading, plans });
+
   const onClick = (plan: Plan) => {
     console.log('click', plan);
   };
@@ -111,7 +113,7 @@ const Card = ({ plan, onClick }: { plan: Plan; onClick: () => void }) => {
                 plan.featured && 'text-neutral-700'
               )}
             >
-              / launch
+              / {plan.sub_text}
             </span>
           )}
         </div>

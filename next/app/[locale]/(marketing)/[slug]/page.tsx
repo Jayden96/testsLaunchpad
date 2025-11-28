@@ -9,17 +9,24 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const pageData = await fetchContentType(
-    'pages',
-    {
-      filters: {
-        slug: params.slug,
-        locale: params.locale,
-      },
-      populate: 'seo.metaImage',
+const pageData = await fetchContentType(
+  'pages',
+  {
+    filters: {
+      slug: params.slug,
+      locale: params.locale,
     },
-    true
-  );
+    populate: {
+      dynamic_zone: {
+        populate: '*'
+      },
+      seo: {
+        populate: '*'
+      }
+    }
+  },
+  true
+);
 
   const seo = pageData?.seo;
   const metadata = generateMetadataObject(seo);
@@ -30,16 +37,24 @@ export default async function Page(props: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const params = await props.params;
-  const pageData = await fetchContentType(
-    'pages',
-    {
-      filters: {
-        slug: params.slug,
-        locale: params.locale,
-      },
+const pageData = await fetchContentType(
+  'pages',
+  {
+    filters: {
+      slug: params.slug,
+      locale: params.locale,
     },
-    true
-  );
+    populate: {
+      dynamic_zone: {
+        populate: '*'
+      },
+      seo: {
+        populate: '*'
+      }
+    }
+  },
+  true
+);
 
   const localizedSlugs = pageData.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {
