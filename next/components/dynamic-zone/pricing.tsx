@@ -27,6 +27,7 @@ type Plan = {
   number: string;
   featured?: boolean;
   CTA?: CTA | undefined;
+  sub_text?: string;
 };
 
 export const Pricing = ({
