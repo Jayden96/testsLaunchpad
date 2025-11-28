@@ -193,7 +193,7 @@ export interface DynamicZonePricing extends Struct.ComponentSchema {
   attributes: {
     heading: Schema.Attribute.String;
     plans: Schema.Attribute.Relation<'oneToMany', 'api::plan.plan'>;
-    sub_heading: Schema.Attribute.String;
+    sub_heading: Schema.Attribute.String & Schema.Attribute.DefaultTo<'month'>;
   };
 }
 

@@ -2,6 +2,20 @@ export default ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
   app: {
-    keys: env.array('APP_KEYS') || ['tobemodified1', 'tobemodified2'],
+    keys: env.array('APP_KEYS'),
+  },
+  webhooks: {
+    populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
+  },
+  // Add this section:
+  vite: {
+    server: {
+      allowedHosts: [
+        'localhost',
+        '127.0.0.1',
+        'admin.theimpresion.com',
+        'api.theimpresion.com',
+      ],
+    },
   },
 });

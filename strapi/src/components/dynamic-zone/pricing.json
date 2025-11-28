@@ -11,7 +11,8 @@
       "type": "string"
     },
     "sub_heading": {
-      "type": "string"
+      "type": "string",
+      "default": "month"
     },
     "plans": {
       "type": "relation",
