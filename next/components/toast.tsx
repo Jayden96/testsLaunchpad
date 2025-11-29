@@ -1,3 +1,5 @@
+//This is a pop up Temporarily disabled AI popup 
+
 'use client';
 
 import clsx from 'clsx';

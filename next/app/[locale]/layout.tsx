@@ -67,7 +67,7 @@ export default async function LocaleLayout(props: {
           <Navbar data={pageData.navbar} locale={locale} />
           {children}
           <Footer data={pageData.footer} locale={locale} />
-          <AIToast />
+          {/*<AIToast />  //<- this is a pop up Temporarily disabled AI popup */}
           {isDraftMode && <DraftModeBanner />}
         </div>
       </CartProvider>
