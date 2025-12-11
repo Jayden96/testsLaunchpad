@@ -51,10 +51,19 @@ export default async function LocaleLayout(props: {
   const { isEnabled: isDraftMode } = await draftMode();
 
   const pageData = await fetchContentType(
-    'global',
-    { filters: { locale } },
-    true
-  );
+  'global',
+  { 
+    filters: { locale },
+    populate: {
+      navbar: {
+        populate: 'logo'
+      },
+      footer: '*',
+      seo: '*'
+    }
+  },
+  true
+);
   return (
     <ViewTransitions>
       <CartProvider>
