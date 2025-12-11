@@ -1,6 +1,7 @@
 import { unstable_noStore as noStore } from 'next/cache';
 import Image from 'next/image';
 import { ComponentProps } from 'react';
+import { rewriteImageUrl } from '../../lib/cdn/cdn-helpers';
 
 interface StrapiImageProps
   extends Omit<ComponentProps<typeof Image>, 'src' | 'alt'> {
@@ -9,17 +10,12 @@ interface StrapiImageProps
 }
 
 export function getStrapiMedia(url: string | null) {
-  const strapiURL = process.env.NEXT_PUBLIC_API_URL;
   if (url == null) return null;
   if (url.startsWith('data:')) return url;
   if (url.startsWith('http') || url.startsWith('//')) return url;
-  if (url.startsWith('/')) {
-    if (!strapiURL && document?.location.host.endsWith('.strapidemo.com')) {
-      return `https://${document.location.host.replace('client-', 'api-')}${url}`;
-    }
-    return strapiURL + url;
-  }
-  return `${strapiURL}${url}`;
+  
+  // Use CDN rewrite helper for better optimization
+  return rewriteImageUrl(url);
 }
 
 export function StrapiImage({
