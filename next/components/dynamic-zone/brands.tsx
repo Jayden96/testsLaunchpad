@@ -77,7 +77,7 @@ export const Brands = ({
             >
               <StrapiImage
                 src={logo.image?.url}
-                alt={logo.image.alternativeText}
+                alt={logo.image?.alternativeText || 'Logo'}
                 width={400}
                 height={400}
                 className="md:h-20 md:w-60 h-10 w-40 object-contain filter"
