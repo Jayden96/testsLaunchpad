@@ -82,7 +82,7 @@ export const TestimonialsSlider = ({ testimonials }: { testimonials: any }) => {
                     <div className="absolute inset-0 h-full -z-10">
                       <StrapiImage
                         className="relative top-11 left-1/2 -translate-x-1/2 rounded-full"
-                        src={item.user.image.url}
+                        src={item?.user?.image?.url}
                         width={56}
                         height={56}
                         alt={`${item.user.firstname} ${item.user.lastname}`}
